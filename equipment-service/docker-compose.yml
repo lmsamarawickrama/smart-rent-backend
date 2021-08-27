@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  SmartRentEquipmentDB:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: ${DATABASE_NAME}
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-volume:/data/db
