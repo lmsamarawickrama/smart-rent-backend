@@ -20,10 +20,11 @@ public class PaymentServiceImpl implements PaymentService
   }
 
   @Override
-  public void authorizePayment(String subjectId, String userId, String amount)
+  public boolean authorizePayment(String userId, String amount)
   {
     AuthorizedPaymentEvent authorizedPaymentEvent = paymentEventFactory
-        .createAuthorizedPaymentEvent(subjectId, userId, amount);
+        .createAuthorizedPaymentEvent(userId, amount);
     paymentEventProducer.sendAuthorizedPaymentEvent(authorizedPaymentEvent);
+    return true;
   }
 }

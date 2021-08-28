@@ -3,6 +3,8 @@ package org.saliam.smartrent.user.presentation.rest.controller;
 import org.mapstruct.factory.Mappers;
 import org.saliam.smartrent.user.application.UserApplicationService;
 import org.saliam.smartrent.user.domain.entity.User;
+import org.saliam.smartrent.user.presentation.message.broker.UserServiceMessageProxy;
+import org.saliam.smartrent.user.presentation.message.model.VerifyUserEvent;
 import org.saliam.smartrent.user.presentation.rest.UserApi;
 import org.saliam.smartrent.user.presentation.rest.dto.UserCreateDto;
 import org.saliam.smartrent.user.presentation.rest.dto.UserDto;
@@ -23,6 +25,9 @@ public class UserController implements UserApi
   private UserApplicationService userApplicationService;
 
   @Autowired
+  private UserServiceMessageProxy userServiceMessageProxy;
+
+  @Autowired
   public void setUserService(UserApplicationService userApplicationService)
   {
     this.userApplicationService = userApplicationService;
@@ -40,6 +45,8 @@ public class UserController implements UserApi
   @Override
   public ResponseEntity<UserDto> get(Long id)
   {
+    VerifyUserEvent response_topic = new VerifyUserEvent("1", "4", "response topic");
+    userServiceMessageProxy.producerPayment(response_topic);
     final Optional<User> userById = userApplicationService.get(id);
     final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
     return userById.map(user -> ResponseEntity.ok(userMapper.userToUserDto(user)))

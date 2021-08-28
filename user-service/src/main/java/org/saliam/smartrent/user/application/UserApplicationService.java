@@ -35,4 +35,9 @@ public class UserApplicationService
   {
     return userService.getAll();
   }
+
+  public boolean isValidUser(String userId)
+  {
+    return userService.isValidUser(userId);
+  }
 }

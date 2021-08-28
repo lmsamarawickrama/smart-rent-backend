@@ -9,6 +9,8 @@ public class EquipmentDto
 {
   private String id;
 
+  private String ownerId;
+
   private String name;
 
   private String description;
@@ -16,8 +18,6 @@ public class EquipmentDto
   private String amount;
 
   private AddressDto address;
-
-  private boolean rented;
 
   private LocationPoint location;
 }

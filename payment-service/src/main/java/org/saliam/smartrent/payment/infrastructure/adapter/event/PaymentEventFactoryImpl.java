@@ -8,17 +8,17 @@ public class PaymentEventFactoryImpl implements PaymentEventFactory
 {
 
   @Override
-  public AuthorizedPaymentEvent createAuthorizedPaymentEvent(String subjectId, String userId, String amount)
+  public AuthorizedPaymentEvent createAuthorizedPaymentEvent(String userId, String amount)
   {
-    return AuthorizedPaymentEvent.builder().subjectId(subjectId).userId(userId).amount(amount).transactionId("23")
+    return AuthorizedPaymentEvent.builder().userId(userId).amount(amount).transactionId("23")
         .build();
   }
 
   @Override
-  public UnAuthorizedPaymentEvent createUnAuthorizedPaymentEvent(String subjectId, String userId,
+  public UnAuthorizedPaymentEvent createUnAuthorizedPaymentEvent(String userId,
                                                                  String amount)
   {
-    return UnAuthorizedPaymentEvent.builder().subjectId(subjectId).userId(userId).amount(amount)
+    return UnAuthorizedPaymentEvent.builder().userId(userId).amount(amount)
         .reason("In sufficient credit")
         .build();
   }

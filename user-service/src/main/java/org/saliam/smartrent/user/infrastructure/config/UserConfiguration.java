@@ -64,7 +64,8 @@ public class UserConfiguration
   }
 
   @Bean(name = "org.saliam.smartrent.user.domain.port.out.IdentityProviderRepository")
-  public IdentityProviderRepository getIdentityProviderRepository(Client client, @Value("#{${okta.user.groups}}") Map<String,String> groupNameToId)
+  public IdentityProviderRepository getIdentityProviderRepository(Client client,
+                                                                  @Value("#{${okta.user.groups}}") Map<String, String> groupNameToId)
   {
     return new OktaIdentityProviderClient(client, groupNameToId);
   }

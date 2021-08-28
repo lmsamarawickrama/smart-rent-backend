@@ -8,6 +8,8 @@ public class Equipment
 {
   private String id;
 
+  private String ownerId;
+
   private String name;
 
   private String description;
@@ -15,8 +17,6 @@ public class Equipment
   private String amount;
 
   private Address address;
-
-  private boolean rented;
 
   private LocationPoint location;
 

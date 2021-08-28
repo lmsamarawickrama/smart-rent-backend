@@ -16,6 +16,8 @@ public class EquipmentDocument
   @Id
   private String id;
 
+  private String ownerId;
+
   private String name;
 
   private String description;
@@ -23,8 +25,6 @@ public class EquipmentDocument
   private String amount;
 
   private AddressValueObject address;
-
-  private boolean rented;
 
   @GeoSpatialIndexed(type = GEO_2DSPHERE)
   private Point location;

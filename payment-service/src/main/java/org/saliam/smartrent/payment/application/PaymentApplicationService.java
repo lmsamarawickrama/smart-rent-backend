@@ -13,9 +13,9 @@ public class PaymentApplicationService
     this.paymentService = paymentService;
   }
 
-  public void authorizePayment(String subjectId, String userId, String amount)
+  public boolean authorizePayment(String userId, String amount)
   {
-    paymentService.authorizePayment(subjectId, userId, amount);
+    return paymentService.authorizePayment(userId, amount);
   }
 
 }

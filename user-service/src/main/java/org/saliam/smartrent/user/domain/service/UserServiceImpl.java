@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService
   {
     return userRepository.existsByUsername(username);
   }
+
+  public boolean isValidUser(String id)
+  {
+    return userRepository.get(Long.valueOf(id)).isPresent();
+  }
 }

@@ -17,4 +17,6 @@ public interface UserService
 
   boolean existsByUsername(String username);
 
+  boolean isValidUser(String id);
+
 }
