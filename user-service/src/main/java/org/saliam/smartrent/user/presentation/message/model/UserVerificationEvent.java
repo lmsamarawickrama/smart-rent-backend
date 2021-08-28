@@ -1,11 +1,19 @@
 package org.saliam.smartrent.user.presentation.message.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@Getter @Setter @SuperBuilder
-public abstract class UserVerificationEvent
+@Getter @Setter @Builder
+public class UserVerificationEvent
 {
   private String userId;
+
+  private String name;
+
+  private String subjectId;
+
+  private String reason;
+
+  private boolean successful;
 }

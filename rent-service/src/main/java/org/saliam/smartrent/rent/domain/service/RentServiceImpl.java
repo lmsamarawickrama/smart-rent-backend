@@ -4,6 +4,7 @@ import org.saliam.smartrent.rent.domain.entity.Rent;
 import org.saliam.smartrent.rent.domain.entity.RentStatus;
 import org.saliam.smartrent.rent.domain.port.in.RentService;
 import org.saliam.smartrent.rent.domain.port.out.RentRepository;
+import org.saliam.smartrent.rent.domain.service.saga.CreateRentSagaManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,16 +13,22 @@ public class RentServiceImpl implements RentService
 {
   private final RentRepository rentRepository;
 
-  public RentServiceImpl(final RentRepository rentRepository)
+  private final CreateRentSagaManager createRentSagaManager;
+
+  public RentServiceImpl(final RentRepository rentRepository,
+                         CreateRentSagaManager createRentSagaManager)
   {
     this.rentRepository = rentRepository;
+    this.createRentSagaManager = createRentSagaManager;
   }
 
   @Override
   public Rent createRent(Rent rent)
   {
     rent.setStatus(RentStatus.PENDING);
-    return rentRepository.createRent(rent);
+    Rent pendingRent = rentRepository.createRent(rent);
+    createRentSagaManager.createSaga(pendingRent);
+    return pendingRent;
   }
 
   @Override
