@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  smartrentDB:
+  smart_rent_rent_DB:
     image: mysql:latest
     ports:
-      - "${DATABASE_PORT}:3306"
+      - "3306:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -12,6 +12,6 @@ services:
       MYSQL_USER: ${DATABASE_USERNAME}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
-      - smart-rent-volume:/var/lib/mysql
+      - smart-rent-rent-volume:/var/lib/mysql
 volumes:
-  smart-rent-volume:
+  smart-rent-rent-volume:
